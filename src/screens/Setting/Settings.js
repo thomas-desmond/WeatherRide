@@ -33,9 +33,8 @@ const Settings = ({navigation}) => {
   const [location, onChangeLocation] = useState("");
   const [maxRideTemp, onMaxRideTempChange] = useState("34");
   const [minRideTemp, onMinRideTempChange] = useState("12");
-  const [maxRainPercent, onMaxRainPercentChange] = useState("");
-  const [maxRainInches, onMaxRainInchesChange] = useState("");
-
+  const [maxRainPercent, onMaxRainPercentChange] = useState(50);
+  const [maxRainInchesSlider, onMaxRainInchesSliderChange] = useState(3);
 
   return (
     <SafeAreaView
@@ -94,12 +93,14 @@ const Settings = ({navigation}) => {
           <Text style={[LabelStyle.rainText]}>
             Max Allowable Rain Percentage (%)
           </Text>
-          <Text style={[LabelStyle.rainText]}>5%</Text>
+          <Text style={[LabelStyle.rainText]}>{maxRainPercent}%</Text>
         </View>
           <Slider
             style={{width: wp('96%'), marginHorizontal: wp('2%'), marginVertical: wp('4%')}}
             minimumValue={0}
-            maximumValue={1}
+            maximumValue={100}
+            value={maxRainPercent}
+            onValueChange={onMaxRainPercentChange}
             minimumTrackTintColor= {appColors.lightBlue}
             maximumTrackTintColor= {appColors.grey}
           />
@@ -114,15 +115,18 @@ const Settings = ({navigation}) => {
           <Text style={[LabelStyle.rainText]}>
             Max Allowable Rain in Inches
           </Text>
-          <Text style={[LabelStyle.rainText]}>1.0 inches</Text>
+          <Text style={[LabelStyle.rainText]}>{maxRainInchesSlider} inches</Text>
         </View>
         <Slider
             style={{width: wp('96%'), marginHorizontal: wp('2%'), marginVertical: wp('4%')}}
             minimumValue={0}
-            maximumValue={1}
+            maximumValue={10}
+            value={maxRainInchesSlider}
+            onValueChange={onMaxRainInchesSliderChange}
             minimumTrackTintColor= {appColors.lightBlue}
             maximumTrackTintColor= {appColors.grey}
           />
+          <Text>{maxRainInchesSlider}</Text>
       </View>
     </SafeAreaView>
   );

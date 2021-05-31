@@ -153,7 +153,7 @@ const Home = ({navigation}) => {
             item.id + '';
           }}
           renderItem={({item}) => {
-            return <WeatherCardComponent item={item} />;
+            return <WeatherCardComponent key={Math.random()} item={item} />;
           }}
         />
       </LinearGradient>
